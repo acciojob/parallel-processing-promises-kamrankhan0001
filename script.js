@@ -95,7 +95,7 @@ function downloadAndDisplayImages(images) {
       // Append the downloaded images to the output container
       const outputContainer = document.getElementById('output');
       images.forEach(image => {
-        const imgElement = document.createElement('img');
+        const imgElement = document.createElement("Downloads and displays images");
         imgElement.src = image.src;
         imgElement.alt = image.description;
         imgElement.width = 400;
