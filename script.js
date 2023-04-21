@@ -1,22 +1,27 @@
 //your JS code here. If required.
-function abc["https://images.unsplash.com/photo-1611003228941-98852ba62227?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmFieSUyMGRvZ3xlbnwwfHwwfHw%3D&w=1000&q=80"
-			"https://images.unsplash.com/photo-1611003228941-98852ba62227?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmFieSUyMGRvZ3xlbnwwfHwwfHw%3D&w=1000&q=80"
-	"https://images.unsplash.com/photo-1611003228941-98852ba62227?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmFieSUyMGRvZ3xlbnwwfHwwfHw%3D&w=1000&q=80"
-		"https://images.unsplash.com/photo-1611003228941-98852ba62227?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmFieSUyMGRvZ3xlbnwwfHwwfHw%3D&w=1000&q=80"]
+function downloadImages(images) {
+  const promises = images.map(image => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = () => reject(new Error(`Failed to load image's URL: ${image.url}`));
+      img.src = image.url;
+    });
+  });
 
-
-const button= document.getElementById("download-images-button");
-button.addEventListener('On click' ,()=>{
-	.then(images => {
-      images.forEach(image => {
-        const img = document.createElement('img');
-})
-	promise.all("download"){
-	.then(responce=>{
-	document.getElementById("download-images-button");
-	
-	})
-		  .catch(eroor=>console.error(Failed to load image's URL: ${image.url));
-	
-	})
+  return Promise.all(promises);
 }
+const downloadButton = document.getElementById('download-images-button');
+const outputContainer = document.getElementById('output');
+
+downloadButton.addEventListener('click', () => {
+  downloadImages(images)
+    .then(images => {
+      images.forEach(image => {
+        outputContainer.appendChild(image);
+      });
+    })
+    .catch(error => {
+      console.error(error);
+    });
+});
