@@ -31,7 +31,7 @@ const images = [
   { url: 'https://via.placeholder.com/350', description: 'Placeholder Image 3' },
 ];
 
-function downloadImages(images) {
+function downloadAndDisplayImages(images) {
   const promises = images.map(image => {
     return new Promise((resolve, reject) => {
       const img = new Image();
@@ -62,6 +62,6 @@ function downloadImages(images) {
 
 const button = document.getElementById('download-images-button');
 button.addEventListener('click', () => {
-  Downloads and displays images(images);
+  downloadImages(images);
 });
 
